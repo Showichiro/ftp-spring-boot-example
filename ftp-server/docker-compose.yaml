@@ -1,0 +1,16 @@
+services:
+  ftp_server:
+    image: stilliard/pure-ftpd
+    container_name: ftp-server
+    ports:
+      - "21:21"
+      - "20:20"
+      - "30000-30009:30000-30009" # 30000～30009のポートは、このDockerイメージのデフォルト・パッシブ・ポートがアサインされているために必要
+
+    environment:
+      - PUBLICHOST=localhost
+      - FTP_USER_NAME=uname
+      - FTP_USER_PASS=uP@ssw0rd
+      - FTP_USER_HOME=/home/ubuntu
+
+    restart: always
